@@ -1,0 +1,14 @@
+modules: a group of related components
+
+//creating services
+-logic to get data using http req can be added to components directly but w/issues:
+    1. tight coupling - not good
+    2. getting http req during unit testing of a component - not good
+    3. may need to implement same logic in another component...
+    4. component should only deal w/view
+dependency injection creates a single instance of the class for the ENTIRE module so
+beware using static dependencies
+
+//binding
+property binding can be tricky as there aren't always one-2-one binding of dom properties
+to html attributes, in which case you use [attr.attribute_name]='field'

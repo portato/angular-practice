@@ -1,0 +1,54 @@
+<label>Server Name</label>
+  <!-- <input 
+    type="text" 
+    class="form-control" 
+    (input) = "onUpdateServerName($event)"   
+>  -->
+ <input 
+    type="text" 
+    class="form-control" 
+    [(ngModel)] = "serverName"
+>
+    <!--
+        Two way binding using ngModel ( a module in the formsmodule )
+        updates to the serverName are reflected in the input and vice versa
+    -->
+<!-- <p>{{ serverName }}</p> -->
+    <!--
+        $event (reserved variable name) captures any event data shipped with the event
+    -->
+<button 
+    class="btn btn-primary" 
+    (click) = "onCreateServer()"
+    [disabled] = "!allowNewServer"
+>
+    <!--
+        squares used to access dom property 
+        directly then assign (within the quotes) an expression that resolves to t/f-->
+    <!--
+        parentheses used for event-binding. Can access any relevant event to the element in
+        which they're used.
+    -->
+    Add Server
+</button>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p *ngIf="serverCreated; else noServer">Server was created, name is {{ serverName }}</p>
+<!--
+    ngIf must be used with an preceding asterisk as ngIf is a 'structural directive'
+    i.e it changes the structure of our dom.
+    its value is any exp that evaluates to a bool. and the element it's in is 
+    added, if true and remains un added otherwise
+-->
+<ng-template #noServer>
+    <p>Server not created</p>
+</ng-template>
+<!--
+    ng-template is a component that is a generic marker, the #noServer is a local
+    reference
+-->
+<ul>
+    <li *ngFor='let server of servers; let i = index'>
+    <p>{{ i }}  {{ server }}</p>
+    <app-server></app-server>
+    </li>
+</ul>
