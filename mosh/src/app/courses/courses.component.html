@@ -1,5 +1,9 @@
 <h2>{{ title }}</h2>
 <hr>
-<ul>
-  <li *ngFor="let course of courses">{{ course }}</li> 
-</ul>
+  <!-- {{ course.title | uppercase }} <br>
+  {{ course.rating | number:'1.2-6'}} <br>
+  {{ course.students | number }} <br>
+  {{ course.price | currency:'usd':true }} <br>
+  {{ course.releaseDate | date:'shortDate' }} <br> -->
+
+  {{ someText | summary:21 }}

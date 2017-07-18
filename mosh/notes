@@ -12,3 +12,39 @@ beware using static dependencies
 //binding
 property binding can be tricky as there aren't always one-2-one binding of dom properties
 to html attributes, in which case you use [attr.attribute_name]='field'
+
+class binding:
+[class.target_class] = 'bool_value' //in which case the class will be added if bool_value
+evaluates to true
+
+event binding:
+-events bubble up the dom tree i.e. in nested elements each with click event, the inner
+one will be 'clicked' first
+-checkout stopPropagation()
+-event filtering (angular)
+
+//template variables (inline #this_var)
+
+//property binding of custom components
+in order to bind to properties of custom components, you have to decorate said properties
+with the @Input decorator to make them accessible to callers of the component
+...or just add said field(property) to the inputs array in the component decorator object
+parameter.
+-can use alias by supplying it as a string parameter in the @Input decorator
+
+you can bind to events of custom custom components by declaring those 'events' as
+properties of type EventEmitter and emitting them when a certain action occurs (you
+define these rules to create the event). Another component can then subscribe to this 
+event using normal event binding syntax. You can pass parameters to the .emit() function
+to make them available to the subscriber.
+
+style encapsulation:
+encapsulation property in @Component decorator takes an enum ViewEncapsulation which has
+3 'modes'. emulated emulates shadow encapsulation of css styles.
+
+--use ng-content to add ability to add custom content to your component.
+    simply put it where you want custom content to be added (in your component template)
+    and then use selector attribute to define a selector which, when used by consumer,
+    will be added in place of the ng-content. or otherwise have the consumer
+    use ng-container that only its content instead of the whole element will replace
+    ng-content
